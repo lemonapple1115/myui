@@ -1,18 +1,19 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.neural_network import MLPClassifier as MLP
+
 from draw_neural_net import draw_neural_net
 
-#--------[1] Input data
+# --------[1] Input data
 dataset = np.mat('-1 -1 -1; -1 1 1; 1 -1 1; 1 1 -1')
 X_train = dataset
 y_train = np.mat('0; 1; 1; 0')
-#-----2-2-1
-my_hidden_layer_sizes= (2,)
-#------2-2-8-1
-#my_hidden_layer_sizes= (2, 8,)
-#------2-16-16-1
-#my_hidden_layer_sizes= (16, 16,)
+# -----2-2-1
+my_hidden_layer_sizes = (2,)
+# ------2-2-8-1
+# my_hidden_layer_sizes= (2, 8,)
+# ------2-16-16-1
+# my_hidden_layer_sizes= (16, 16,)
 
 XOR_MLP = MLP(
     activation='tanh',
@@ -22,9 +23,9 @@ XOR_MLP = MLP(
     beta_2=0.999,
     early_stopping=False,
     epsilon=1e-08,
-    hidden_layer_sizes= my_hidden_layer_sizes,
+    hidden_layer_sizes=my_hidden_layer_sizes,
     learning_rate='constant',
-    learning_rate_init = 0.1,
+    learning_rate_init=0.1,
     max_iter=5000,
     momentum=0.5,
     nesterovs_momentum=True,
@@ -37,7 +38,7 @@ XOR_MLP = MLP(
     verbose=False,
     warm_start=False)
 
-XOR_MLP.fit(X_train,y_train)
+XOR_MLP.fit(X_train, y_train)
 
 fig = plt.figure(figsize=(12, 12))
 ax = fig.gca()
@@ -45,4 +46,4 @@ ax.axis('off')
 
 layer_sizes = [2] + list(my_hidden_layer_sizes) + [1]
 draw_neural_net(ax, .1, .9, .1, .9, layer_sizes, XOR_MLP.coefs_, XOR_MLP.intercepts_, XOR_MLP.n_iter_, XOR_MLP.loss_)
-fig.savefig('nn_digaram.png')
+fig.savefig('resources/nn_diagram.png')

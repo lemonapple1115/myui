@@ -7,41 +7,24 @@
 # WARNING! All changes made in this file will be lost!
 
 
+import matplotlib
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-import matplotlib
 matplotlib.use('QT5Agg')
 
-import matplotlib.pylab as plt
-from matplotlib.backends.backend_qt5agg import FigureCanvas 
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-from PyQt5.QtGui import QPixmap
 from test import MyApp
-import sys
-from PyQt5.QtWidgets import QApplication
-
-
-
-    
-
-
 
 
 class Ui_MainWindow(object):
 
-  
     def Show_Layer_Window(self):
         self.exPopup = MyApp()
         self.exPopup.setGeometry(100, 200, 100, 100)
         self.exPopup.show()
-        
-
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(774, 591)
-
-        
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -54,7 +37,6 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
 
-
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.Layer_Config = QtWidgets.QPushButton(self.centralwidget)
@@ -62,33 +44,25 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
 
+        # ADD CODE FOR THE FIGURE
 
-        #ADD CODE FOR THE FIGURE
-        
-       
-       
         # We want the axes cleared every time plot() is called
-        #self.im = QPixmap("./nn_digaram.png")
+        # self.im = QPixmap("./nn_diagram.png")
         self.photo = QtWidgets.QLabel(self.centralwidget)
         self.photo.setGeometry(QtCore.QRect(200, 50, 500, 500))
         self.photo.setText("layout")
-        self.photo.setPixmap(QtGui.QPixmap('nn_digaram.png'))
+        self.photo.setPixmap(QtGui.QPixmap('resources/nn_diagram.png'))
         self.photo.setScaledContents(True)
         self.photo.setObjectName("Photo")
-        
-        
-       
-        #self.canvas = FigureCanvas(self.figure)
-        #self.canvas.draw()
 
-        
-        
+        # self.canvas = FigureCanvas(self.figure)
+        # self.canvas.draw()
 
-        #Connect the Layer Config buttom with the Main functional Window
+        # Connect the Layer Config buttom with the Main functional Window
         self.Layer_Config.setFont(font)
         self.Layer_Config.setObjectName("Layer_Config")
         self.Layer_Config.clicked.connect(self.Show_Layer_Window)
-        
+
         self.Activation_Fn = QtWidgets.QPushButton(self.centralwidget)
         self.Activation_Fn.setGeometry(QtCore.QRect(20, 250, 111, 41))
         font = QtGui.QFont()
@@ -170,9 +144,6 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuView.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
-
-     
-
         # Just some button connected to `plot` method
         self.plot_view = QtWidgets.QPushButton(self.centralwidget)
         self.plot_view.setGeometry(QtCore.QRect(20, 430, 111, 41))
@@ -180,10 +151,8 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.plot_view.setFont(font)
         self.plot_view.setObjectName("View Plot")
-        
-        
+
         # set the layout
-        
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -212,4 +181,3 @@ class Ui_MainWindow(object):
         self.actionHelp.setText(_translate("MainWindow", "Help"))
         self.actionSettings.setText(_translate("MainWindow", "Settings"))
         self.actionQuit.setText(_translate("MainWindow", "Quit"))
-

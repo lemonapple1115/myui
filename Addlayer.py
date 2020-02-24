@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 
 
 class Ui_Dialog_Layer_Config(object):
@@ -17,7 +17,7 @@ class Ui_Dialog_Layer_Config(object):
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_Layer_Config)
         self.buttonBox.setGeometry(QtCore.QRect(170, 180, 161, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.checkBox = QtWidgets.QCheckBox(Dialog_Layer_Config)
         self.checkBox.setGeometry(QtCore.QRect(50, 140, 101, 18))
@@ -43,6 +43,7 @@ class Ui_Dialog_Layer_Config(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog_Layer_Config = QtWidgets.QDialog()
     ui = Ui_Dialog_Layer_Config()

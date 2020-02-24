@@ -7,31 +7,24 @@
 # WARNING! All changes made in this file will be lost!
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 
 
 class Ui_Dialog_Addlayer(object):
-
     Num_Layer = 0
 
     def Add_Pushbutton(self):
         print('Add Layer is clicked')
-        newBtn = QtWidgets.QPushButton('New Button', self) 
+        newBtn = QtWidgets.QPushButton('New Button', self)
         self.scrollArea_Layer.setWidgetResizable(True)
-        
-        
-            
-            
-        
 
-        
     def setupUi(self, Dialog_Addlayer):
         Dialog_Addlayer.setObjectName("Dialog_Addlayer")
         Dialog_Addlayer.resize(751, 528)
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_Addlayer)
         self.buttonBox.setGeometry(QtCore.QRect(400, 470, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.scrollArea_Layer = QtWidgets.QScrollArea(Dialog_Addlayer)
         self.scrollArea_Layer.setGeometry(QtCore.QRect(20, 100, 221, 331))
@@ -60,6 +53,7 @@ class Ui_Dialog_Addlayer(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog_Addlayer = QtWidgets.QDialog()
     ui = Ui_Dialog_Addlayer()

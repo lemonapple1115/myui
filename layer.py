@@ -17,7 +17,7 @@ class Ui_Dialog_Layer(object):
         self.buttonBox_Layers = QtWidgets.QDialogButtonBox(Dialog_Layer)
         self.buttonBox_Layers.setGeometry(QtCore.QRect(190, 290, 171, 81))
         self.buttonBox_Layers.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox_Layers.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox_Layers.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox_Layers.setObjectName("buttonBox_Layers")
         self.pushButton_LayerNo = QtWidgets.QPushButton(Dialog_Layer)
         self.pushButton_LayerNo.setGeometry(QtCore.QRect(40, 60, 121, 31))
@@ -79,6 +79,7 @@ class Ui_Dialog_Layer(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Dialog_Layer = QtWidgets.QDialog()
     ui = Ui_Dialog_Layer()
