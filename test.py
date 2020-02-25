@@ -4,7 +4,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-
+from model.model import Layers
 from test_layer_frame import LayerFrame
 
 
@@ -41,13 +41,13 @@ class CheckableComboBox(QComboBox):
 
 
 class SingleLayerFrame(QGroupBox):
-    def __init__(self, numAddWidget):
+    def __init__(self, layers, numAddWidget):
         QGroupBox.__init__(self)
         self.numAddWidget = numAddWidget
         self.numAddItem = 1
         self.setTitle("Layer {}".format(self.numAddWidget))
         self.layer_layout = QVBoxLayout()
-        self.layer_layout.addWidget(LayerFrame())
+        self.layer_layout.addWidget(LayerFrame(layers, numAddWidget))
         self.setLayout(self.layer_layout)
 
 
@@ -91,6 +91,8 @@ class MyApp(QWidget):
     def __init__(self):
         super().__init__()
         self.numAddWidget = 1
+        # layers info dictionary
+        self.layers = Layers()
         self.initUi()
 
     def initUi(self):
@@ -111,13 +113,13 @@ class MyApp(QWidget):
         self.layoutV.addWidget(self.add_button)
         self.add_button.clicked.connect(self.addWidget)
 
-        self.widget = SingleLayerFrame(self.numAddWidget)
+        self.widget = SingleLayerFrame(self.layers, self.numAddWidget)
         self.gridLayout.addWidget(self.widget)
         self.setGeometry(700, 200, 350, 300)
 
     def addWidget(self):
         self.numAddWidget += 1
-        self.widget = SingleLayerFrame(self.numAddWidget)
+        self.widget = SingleLayerFrame(self.layers, self.numAddWidget)
         self.gridLayout.addWidget(self.widget)
 
 

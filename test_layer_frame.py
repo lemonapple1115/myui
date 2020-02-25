@@ -4,14 +4,16 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QVBoxLayout, QHBoxLayout, QLineEdit, QCheckBox, \
     QTextEdit, QGroupBox
 
-from model.model import LayerInfo
+from model.model import LayerInfo, Layers
 
 
 class LayerFrame(QWidget):
-    def __init__(self):
+    def __init__(self, layers, layer_id):
         super().__init__()
         self.init_ui()
-        self.layer_info = LayerInfo()
+        self.layer_frame_id = layer_id
+        self.layer_info = LayerInfo(self.layer_frame_id)
+        layers.add_layer(layer_id, self.layer_info)
 
     def init_ui(self):
         # Layer Type Area
@@ -102,6 +104,6 @@ class LayerFrame(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    layer_frame = LayerFrame()
+    layer_frame = LayerFrame(Layers(), 1)
     layer_frame.show()
     app.exec_()
