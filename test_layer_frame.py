@@ -2,7 +2,7 @@ import sys
 
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QCheckBox, \
-    QTextEdit
+    QTextEdit, QGroupBox
 
 
 class LayerFrame(QWidget):
@@ -12,33 +12,33 @@ class LayerFrame(QWidget):
         self.layer_info = LayerInfo()
 
     def init_ui(self):
-        self._layer_label = QLabel('Layer Type')
         self._cb1 = QCheckBox('&input layer')
         self._cb2 = QCheckBox('&hidden layer')
         self._cb3 = QCheckBox('o&utput layer')
-        self._ac_fn_label = QLabel('Activation Function')
         self._ac_fn_editor = QTextEdit()
-        self._neurons_number_label = QLabel('Neurons Number')
         self._neurons_number_editor = QLineEdit()
         self._edit_btn = QPushButton('&edit')
         self._lock_btn = QPushButton('&ok')
+        self._layer_type_group = QGroupBox('Layer Type')
+        self._ac_fn_group = QGroupBox('Activation Function')
+        self._neurons_number_group = QGroupBox('Neurons Number')
         layout = QHBoxLayout()
         cb_layout = QVBoxLayout()
         fn_layout = QVBoxLayout()
         neurons_num_edit_layout = QVBoxLayout()
-        cb_layout.addWidget(self._layer_label)
         cb_layout.addWidget(self._cb1)
         cb_layout.addWidget(self._cb2)
         cb_layout.addWidget(self._cb3)
-        fn_layout.addWidget(self._ac_fn_label)
         fn_layout.addWidget(self._ac_fn_editor)
-        neurons_num_edit_layout.addWidget(self._neurons_number_label)
         neurons_num_edit_layout.addWidget(self._neurons_number_editor)
         neurons_num_edit_layout.addWidget(self._edit_btn)
         neurons_num_edit_layout.addWidget(self._lock_btn)
-        layout.addLayout(cb_layout)
-        layout.addLayout(fn_layout)
-        layout.addLayout(neurons_num_edit_layout)
+        self._layer_type_group.setLayout(cb_layout)
+        self._ac_fn_group.setLayout(fn_layout)
+        self._neurons_number_group.setLayout(neurons_num_edit_layout)
+        layout.addWidget(self._layer_type_group)
+        layout.addWidget(self._ac_fn_group)
+        layout.addWidget(self._neurons_number_group)
         self.setLayout(layout)
 
         self._cb1.clicked.connect(lambda x: self.set_exclusive_check_boxes(1))
