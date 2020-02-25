@@ -4,6 +4,8 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QVBoxLayout, QHBoxLayout, QLineEdit, QCheckBox, \
     QTextEdit, QGroupBox
 
+from model.model import LayerInfo
+
 
 class LayerFrame(QWidget):
     def __init__(self):
@@ -96,26 +98,6 @@ class LayerFrame(QWidget):
             pass
         else:
             self.layer_info.set_neurons_num(neurons_num)
-
-
-class LayerInfo:
-    def __init__(self):
-        self.layer_type = ''
-        self.activation_function = ''
-        self.neurons_number = 0
-
-    def set_layer_type(self, layer_type_index):
-        layer_types = {1: "input_layer", 2: "hidden_layer", 3: 'output_layer'}
-        self.layer_type = layer_types.get(layer_type_index)
-        print(self.layer_type)
-
-    def set_layer_ac_fn(self, layer_ac_fn):
-        self.activation_function = layer_ac_fn
-        print(self.activation_function)
-
-    def set_neurons_num(self, neurons_num):
-        self.neurons_number = neurons_num
-        print(self.neurons_number)
 
 
 if __name__ == '__main__':

@@ -5,6 +5,9 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 
+from test_layer_frame import LayerFrame
+
+
 class CheckableComboBox(QComboBox):
     def __init__(self, parent=None):
         super(CheckableComboBox, self).__init__(parent)
@@ -37,40 +40,51 @@ class CheckableComboBox(QComboBox):
                                               "".format(self.parent.lblSelectItem.text(), item.text()))
 
 
-class ExampleWidget(QGroupBox):
+class SingleLayerFrame(QGroupBox):
     def __init__(self, numAddWidget):
         QGroupBox.__init__(self)
         self.numAddWidget = numAddWidget
         self.numAddItem = 1
         self.setTitle("Layer {}".format(self.numAddWidget))
-        self.initSubject()
-        self.organize()
+        self.layer_layout = QVBoxLayout()
+        self.layer_layout.addWidget(LayerFrame())
+        self.setLayout(self.layer_layout)
 
-    def initSubject(self):
-        self.lblName = QLabel("Add Layer {}".format(self.numAddWidget), self)
-        self.lblSelectItem = QLabel(self)
 
-        self.teachersselect = CheckableComboBox(self)
-        self.teachersselect.addItem("-Select Activation Functions{}-".format(self.numAddItem))
-        item = self.teachersselect.model().item(0, 0)
-        item.setCheckState(Qt.Unchecked)
-
-        self.addbtn = QPushButton("ComboBoxAddItem...", self)
-        self.addbtn.clicked.connect(self.addTeacher)
-
-    def organize(self):
-        grid = QGridLayout(self)
-        self.setLayout(grid)
-        grid.addWidget(self.lblName, 0, 0, 1, 3)
-        grid.addWidget(self.lblSelectItem, 1, 0, 1, 2)
-        grid.addWidget(self.teachersselect, 1, 2)
-        grid.addWidget(self.addbtn, 3, 2)
-
-    def addTeacher(self):
-        self.numAddItem += 1
-        self.teachersselect.addItem("-Select {}-".format(self.numAddItem))
-        item = self.teachersselect.model().item(self.numAddItem - 1, 0)
-        item.setCheckState(Qt.Unchecked)
+# class ExampleWidget(QGroupBox):
+#     def __init__(self, numAddWidget):
+#         QGroupBox.__init__(self)
+#         self.numAddWidget = numAddWidget
+#         self.numAddItem = 1
+#         self.setTitle("Layer {}".format(self.numAddWidget))
+#         self.initSubject()
+#         self.organize()
+#
+#     def initSubject(self):
+#         self.lblName = QLabel("Add Layer {}".format(self.numAddWidget), self)
+#         self.lblSelectItem = QLabel(self)
+#
+#         self.teachersselect = CheckableComboBox(self)
+#         self.teachersselect.addItem("-Select Activation Functions{}-".format(self.numAddItem))
+#         item = self.teachersselect.model().item(0, 0)
+#         item.setCheckState(Qt.Unchecked)
+#
+#         self.addbtn = QPushButton("ComboBoxAddItem...", self)
+#         self.addbtn.clicked.connect(self.addTeacher)
+#
+#     def organize(self):
+#         grid = QGridLayout(self)
+#         self.setLayout(grid)
+#         grid.addWidget(self.lblName, 0, 0, 1, 3)
+#         grid.addWidget(self.lblSelectItem, 1, 0, 1, 2)
+#         grid.addWidget(self.teachersselect, 1, 2)
+#         grid.addWidget(self.addbtn, 3, 2)
+#
+#     def addTeacher(self):
+#         self.numAddItem += 1
+#         self.teachersselect.addItem("-Select {}-".format(self.numAddItem))
+#         item = self.teachersselect.model().item(self.numAddItem - 1, 0)
+#         item.setCheckState(Qt.Unchecked)
 
 
 class MyApp(QWidget):
@@ -97,13 +111,13 @@ class MyApp(QWidget):
         self.layoutV.addWidget(self.add_button)
         self.add_button.clicked.connect(self.addWidget)
 
-        self.widget = ExampleWidget(self.numAddWidget)
+        self.widget = SingleLayerFrame(self.numAddWidget)
         self.gridLayout.addWidget(self.widget)
         self.setGeometry(700, 200, 350, 300)
 
     def addWidget(self):
         self.numAddWidget += 1
-        self.widget = ExampleWidget(self.numAddWidget)
+        self.widget = SingleLayerFrame(self.numAddWidget)
         self.gridLayout.addWidget(self.widget)
 
 
