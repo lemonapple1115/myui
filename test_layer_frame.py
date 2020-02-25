@@ -1,7 +1,7 @@
 import sys
 
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QCheckBox, \
+from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QVBoxLayout, QHBoxLayout, QLineEdit, QCheckBox, \
     QTextEdit, QGroupBox
 
 
@@ -12,16 +12,25 @@ class LayerFrame(QWidget):
         self.layer_info = LayerInfo()
 
     def init_ui(self):
+        # Layer Type Area
         self._cb1 = QCheckBox('&input layer')
         self._cb2 = QCheckBox('&hidden layer')
         self._cb3 = QCheckBox('o&utput layer')
+
+        # Activation Function Area
         self._ac_fn_editor = QTextEdit()
+
+        # Neurons Number Area, contains a QlineEdit & 2 button
         self._neurons_number_editor = QLineEdit()
         self._edit_btn = QPushButton('&edit')
         self._lock_btn = QPushButton('&ok')
+
+        # new groups
         self._layer_type_group = QGroupBox('Layer Type')
         self._ac_fn_group = QGroupBox('Activation Function')
         self._neurons_number_group = QGroupBox('Neurons Number')
+
+        # set widgets layout
         layout = QHBoxLayout()
         cb_layout = QVBoxLayout()
         fn_layout = QVBoxLayout()
@@ -109,7 +118,8 @@ class LayerInfo:
         print(self.neurons_number)
 
 
-app = QApplication(sys.argv)
-layer_frame = LayerFrame()
-layer_frame.show()
-app.exec_()
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    layer_frame = LayerFrame()
+    layer_frame.show()
+    app.exec_()
