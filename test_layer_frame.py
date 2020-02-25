@@ -79,8 +79,14 @@ class LayerFrame(QWidget):
 
     def save_layer_info(self):
         self.layer_info.set_layer_ac_fn(self._ac_fn_editor.toPlainText())
-        # [todo] input non number would cause an error
-        self.layer_info.set_neurons_num(int(self._neurons_number_editor.text()))
+
+        # [todo] input non number cause an error
+        try:
+            neurons_num = int(self._neurons_number_editor.text())
+        except ValueError:
+            pass
+        else:
+            self.layer_info.set_neurons_num(neurons_num)
 
 
 class LayerInfo:
